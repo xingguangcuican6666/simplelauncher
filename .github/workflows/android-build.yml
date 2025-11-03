@@ -18,12 +18,12 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
-        uses: reactivecircus/android-sdk-action@v2
-        with:
-          api-level: 33
-          build-tools: 33.0.2
-          target: 33
+      # NOTE: The runner typically provides Android SDK tools on ubuntu-latest.
+      # The previous action used here (reactivecircus/android-sdk-action) is
+      # not available on the runner (repository not found), which caused the
+      # job to fail. If you prefer a managed SDK install, replace this block
+      # with a maintained action or add an explicit installation step that
+      # downloads the Android command-line tools and runs sdkmanager.
 
       - name: Grant execute for gradlew
         run: chmod +x ./gradlew
