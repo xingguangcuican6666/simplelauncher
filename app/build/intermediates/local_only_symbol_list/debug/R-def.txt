@@ -1,0 +1,8 @@
+R_DEF: Internal format may change without notice
+local
+id open_btn
+id shortcut_btn
+id url_input
+id webview
+layout activity_fullscreen
+layout activity_main
