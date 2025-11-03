@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:label="SimpleLauncher"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+    android:label="SimpleLauncher"
+    android:icon="@drawable/ic_launcher"
+    android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true">
 
         <activity android:name="com.example.simplelauncher.FullscreenActivity" />
