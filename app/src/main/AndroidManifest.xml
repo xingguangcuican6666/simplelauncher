@@ -6,10 +6,11 @@
 
     <application
         android:allowBackup="true"
-    android:label="SimpleLauncher"
-    android:icon="@drawable/ic_launcher"
-    android:roundIcon="@drawable/ic_launcher_round"
-        android:supportsRtl="true">
+        android:label="SimpleLauncher"
+        android:icon="@drawable/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SimpleLauncher">
 
         <activity android:name="com.example.simplelauncher.FullscreenActivity" />
 
