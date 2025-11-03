@@ -69,17 +69,28 @@ class MainActivity : AppCompatActivity() {
             putExtra("url", url)
         }
 
-        val shortcutManager = getSystemService(ShortcutManager::class.java)
 
-        // Android O+ 推荐使用 ShortcutManager.requestPinShortcut
+        // 获取 ShortcutManager（仅在 API >= O 可用）
+        val shortcutManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // getSystemService(Class) requires API >= 23; since we check for O(26)
+            // this is safe.
+            getSystemService(ShortcutManager::class.java)
+        } else null
+
+        // Android O+ 推荐使用 ShortcutManager.requestPinShortcut。为兼容旧设备，
+        // 我们在 API 级别上做检查，并在不支持时使用旧广播方法回退。
         if (shortcutManager != null && shortcutManager.isRequestPinShortcutSupported) {
-            val shortcut = ShortcutInfo.Builder(this, "shortcut_" + url.hashCode())
+            val builder = ShortcutInfo.Builder(this, "shortcut_" + url.hashCode())
                 .setShortLabel(url)
                 .setLongLabel(url)
-                .setIcon(Icon.createWithResource(this, R.drawable.ic_launcher))
                 .setIntent(shortcutIntent)
-                .build()
 
+            // Icon API 在 API 23+ 可用；只有在运行时 API >= M 时才设置 Icon
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                builder.setIcon(Icon.createWithResource(this, R.drawable.ic_launcher))
+            }
+
+            val shortcut = builder.build()
             shortcutManager.requestPinShortcut(shortcut, null)
             Toast.makeText(this, "已请求固定到主屏幕（系统会提示）", Toast.LENGTH_SHORT).show()
             return
