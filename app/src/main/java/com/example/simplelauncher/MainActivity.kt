@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             val shortcut = ShortcutInfo.Builder(this, "shortcut_" + url.hashCode())
                 .setShortLabel(url)
                 .setLongLabel(url)
-                .setIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
+                .setIcon(Icon.createWithResource(this, R.drawable.ic_launcher))
                 .setIntent(shortcutIntent)
                 .build()
 
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
             putExtra(Intent.EXTRA_SHORTCUT_NAME, url)
             putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                Intent.ShortcutIconResource.fromContext(this@MainActivity, R.mipmap.ic_launcher))
+                Intent.ShortcutIconResource.fromContext(this@MainActivity, R.drawable.ic_launcher))
         }
         sendBroadcast(addIntent)
         Toast.makeText(this, "已发送安装快捷方式广播（部分系统支持）", Toast.LENGTH_SHORT).show()
